@@ -1,20 +1,18 @@
 import { useOnboarding } from "../state/onboarding";
-import WelcomeScreen from "../components/onboarding/WelcomeScreen";
-import LanguageScreen from "../components/onboarding/LanguageScreen";
-import MoodScreen from "../components/onboarding/MoodScreen";
-import MusicScreen from "../components/onboarding/MusicScreen";
-import FinalScreen from "../components/onboarding/FinalScreen";
+import WelcomeScreen from "../components/Onboarding/WelcomeScreen";
+import LanguageScreen from "../components/Onboarding/LanguageScreen";
+import MoodScreen from "../components/Onboarding/MoodScreen";
+import MusicScreen from "../components/Onboarding/MusicScreen";
+import FinalScreen from "../components/Onboarding/FinalScreen";
 
 export default function Onboarding() {
   const { step } = useOnboarding();
 
-  return (
-    <div className="min-h-screen flex items-center justify-center px-4 text-white">
-      {step === 1 && <WelcomeScreen />}
-      {step === 2 && <LanguageScreen />}
-      {step === 3 && <MoodScreen />}      {/* ← MUST EXIST */}
-      {step === 4 && <MusicScreen />}
-      {step === 5 && <FinalScreen />}
-    </div>
-  );
+  if (step === 1) return <WelcomeScreen />;
+  if (step === 2) return <LanguageScreen />;
+  if (step === 3) return <MoodScreen />;
+  if (step === 4) return <MusicScreen />;
+  if (step === 5) return <FinalScreen />;
+
+  return null;
 }
