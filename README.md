@@ -7,7 +7,7 @@ It adapts its tone based on the user’s chosen **mood/persona** and speaks **Ta
 
 ## **⭐ Features**
 
-### ### 🧠 Emotionally Intelligent Responses
+### 🧠 Emotionally Intelligent Responses
 - **•** Understands sadness, stress, heartbreak, and emotional overwhelm  
 - **•** Replies using natural emotional warmth  
 - **•** Avoids robotic repetition  
