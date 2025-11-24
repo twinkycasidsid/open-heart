@@ -16,7 +16,7 @@ It adapts its tone based on the user’s chosen **mood/persona** and speaks **Ta
 
 ---
 
-### ### 🎭 Mood-Based Personas
+### 🎭 Mood-Based Personas
 Choose how Open Heart sounds:
 
 - **• `stranger_in_park`** — soft, gentle, distant but kind  
