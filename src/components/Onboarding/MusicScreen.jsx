@@ -1,32 +1,56 @@
+import { useNavigate } from "react-router-dom";
 import { useOnboarding } from "../../state/onboarding";
 
 export default function MusicScreen() {
-  const { nextStep, setMusic } = useOnboarding();
+  const navigate = useNavigate();
+  const { setMusic } = useOnboarding();
+
+  const handleSelect = (choice) => {
+    setMusic(choice);
+    navigate("/final");   // ← go to final screen
+  };
 
   return (
-    <div className="text-center max-w-md space-y-4">
-      <h2 className="text-3xl font-bold">Do you want background music?</h2>
+    <div className="oh-wrapper">
 
-      <div className="space-y-3">
-        <button
-          className="w-full py-3 bg-white text-black rounded-xl hover:bg-gray-200"
-          onClick={() => {
-            setMusic(true);
-            nextStep();
-          }}
-        >
-          Yes, please
-        </button>
+      {/* Background GIF */}
+      <div className="fullscreen-bg">
+        <img src="/oh-bg.gif" alt="bg" />
+      </div>
 
-        <button
-          className="w-full py-3 bg-gray-700 rounded-xl hover:bg-gray-600"
-          onClick={() => {
-            setMusic(false);
-            nextStep();
-          }}
-        >
-          No thanks
-        </button>
+      {/* Card */}
+      <div className="oh-card">
+
+        {/* Logo */}
+        <div className="text-center mb-3">
+          <img src="/oh-light-logo.png" className="oh-logo" alt="logo" />
+        </div>
+
+        {/* Question */}
+        <p className="oh-text">
+          Would you like soft background music<br />
+          while we talk?
+        </p>
+
+        {/* Buttons */}
+        <div className="d-grid gap-3 mt-3">
+
+          <button
+            className="btn btn-light w-100"
+            onClick={() => handleSelect(true)}
+          >
+            Yes, please 🎵
+          </button>
+
+          <button
+            className="btn btn-secondary w-100"
+            style={{ background: "#ffffff33", border: "none" }}
+            onClick={() => handleSelect(false)}
+          >
+            No thanks
+          </button>
+
+        </div>
       </div>
     </div>
   );

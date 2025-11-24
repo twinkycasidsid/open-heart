@@ -1,24 +1,49 @@
+import { useNavigate } from "react-router-dom";
 import { useOnboarding } from "../../state/onboarding";
 
 export default function WelcomeScreen() {
-  const { nextStep, saveUserId } = useOnboarding();
+  const navigate = useNavigate();
+  const { saveUserId } = useOnboarding();
 
   return (
-    <div className="text-center max-w-md space-y-6">
-      <h1 className="text-4xl font-bold">Welcome to Open Heart</h1>
-      <p className="text-lg opacity-80">
-        I’m glad you’re here. Let’s set things up so we can talk comfortably.
-      </p>
+    <>
+      {/* FULLSCREEN BACKGROUND */}
+      <div className="fullscreen-bg">
+        <img src="/oh-bg.gif" alt="background" />
+      </div>
 
-      <button
-        onClick={() => {
-          saveUserId();
-          nextStep();
-        }}
-        className="px-6 py-3 bg-white text-black rounded-xl hover:bg-gray-200"
-      >
-        Continue
-      </button>
-    </div>
+      {/* CARD CENTERED */}
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="center-card">
+
+          {/* LOGO */}
+          <img
+            src="/oh-light-logo.png"
+            className="mx-auto mb-3 oh-logo"
+            style={{ width: "80px", height: "80px" }}
+            alt="Open Heart Logo"
+          />
+
+          {/* TEXT */}
+          <p className="oh-text">
+            Hey there. Welcome to Open Heart.
+            <br />
+            I’m glad you’re here.
+          </p>
+
+          {/* BUTTON */}
+          <button
+            className="btn btn-light w-100 mt-3"
+            onClick={() => {
+              saveUserId();
+              navigate("/language");   // ← NEW ROUTE
+            }}
+          >
+            Continue →
+          </button>
+
+        </div>
+      </div>
+    </>
   );
 }

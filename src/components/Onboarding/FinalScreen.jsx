@@ -1,34 +1,71 @@
 import { useOnboarding } from "../../state/onboarding";
 import { useNavigate } from "react-router-dom";
 import { createSession } from "../../services/sessionService";
+import { useEffect, useState } from "react";
 
 export default function FinalScreen() {
-  const { userId, language, mood, music } = useOnboarding();
+  const { userId, language, mood, reset } = useOnboarding();
   const navigate = useNavigate();
 
-  const handleStart = async () => {
-    // create a session in Supabase
-    await createSession({ userId, language, mood });
+  const textFull =
+    "Whenever you're ready, you can start talking.\nI'm here to listen.";
 
-    // go to chat page
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setText(textFull.slice(0, i));
+      i++;
+      if (i > textFull.length) clearInterval(interval);
+    }, 35);
+    return () => clearInterval(interval);
+  }, []);
+
+  const startChat = async () => {
+    await createSession({ userId, language, mood });
     navigate("/chat");
   };
 
   return (
-    <div className="text-center max-w-md space-y-6">
-      <h2 className="text-3xl font-bold">All set!</h2>
+    <>
+      {/* BACKGROUND */}
+      <div className="fullscreen-bg">
+        <img src="/oh-bg.gif" />
+      </div>
 
-      <p className="opacity-80">
-        You chose <strong>{language}</strong>, <strong>{mood}</strong> mood
-        and {music ? "with music." : "no music."}
-      </p>
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="center-card">
 
-      <button
-        className="px-6 py-3 bg-white text-black rounded-xl hover:bg-gray-200"
-        onClick={handleStart}
-      >
-        Start talking 💬
-      </button>
-    </div>
+          {/* LOGO */}
+          <img
+            src="/oh-light-logo.png"
+            className="mx-auto mb-3"
+            style={{ width: "80px", height: "80px" }}
+          />
+
+          {/* TYPING TEXT */}
+          <p className="typing">{text}</p>
+
+          {/* BUTTONS */}
+          <div className="mt-4 d-flex justify-content-center gap-3">
+            <button
+              className="btn btn-outline-light"
+              onClick={() => {
+                reset();
+                navigate("/");
+              }}
+            >
+              Reset
+            </button>
+
+            <button className="btn btn-light" onClick={startChat}>
+              Proceed →
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </>
   );
 }
