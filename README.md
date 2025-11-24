@@ -1,16 +1,59 @@
-# React + Vite
+# 🌸 Open Heart — Emotional Support AI (Tagalog & Bisaya)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Open Heart is a lightweight emotional-support chatbot designed to offer warm, human-like conversations in Tagalog or Bisaya, powered by Supabase Edge Functions and Google Gemini.
+It adapts its tone based on the user’s chosen mood/persona, creating natural and comforting conversations.
 
-Currently, two official plugins are available:
+**🌟 Features**
+🧠 Emotionally Intelligent Responses
+- Understands user feelings (sadness, heartbreak, stress, loneliness)
+- Replies with natural emotional warmth
+-No robotic repetition. No clinical tone.
+🎭 Mood-Based Personas
+- Choose how the AI speaks:
+    "stranger_in_park" – gentle. soft-spoken. respectful.
+    "friend_at_beach" – warm. casual. comforting.
+    "kuya_or_ate" – caring sibling tone.
+    "late_night_talk" – quiet. calm. reflective.
+    "funny_light" – kalog, pang-comfort, but still safe.
+- Each mood affects:
+    Length of responses
+    Level of emotional closeness
+    Word choice
+    Style of empathy
+🌍 Multi-language
+- Supports Tagalog, Bisaya and English
+🛡 Trauma-Safe Guardrails
+- Never gives medical, legal, or suicidal instructions
+- Avoids harmful advice
+- Redirects to safer emotional grounding language
+🔁 Short-term Memory (Conversation Awareness)
+- Open Heart keeps context of:
+    What emotion the user expressed
+    What happened in earlier messages (e.g., breakup, betrayal)
+    Tone they use
+    How they are coping
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**⚙️ Tech Stack**
+  Frontend
+    React + Vite
+    Axios
+    Tailwind (optional)
 
-## React Compiler
+  Backend
+    Supabase Edge Functions
+    Deno
+    Google Gemini API (gemini-2.0-flash)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**🛠 Installation**
+Clone the repo:
+    git clone https://github.com/twinkycasidsid/open-heart.git
+    cd open-heart
 
-## Expanding the ESLint configuration
+Install dependencies:
+    npm install
+    
+Run dev mode:
+    npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Deploy Edge Functions:
+    supabase functions deploy chat-gemini
