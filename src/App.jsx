@@ -8,7 +8,7 @@ import ChatPage from "./pages/ChatPage";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/open-heart">
       <Routes>
         <Route path="/" element={<WelcomeScreen />} />
         <Route path="/language" element={<LanguageScreen />} />
