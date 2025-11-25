@@ -3,11 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://twinkycasidsid.github.io/open-heart/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint .",
     "build:css": "node node_modules/@tailwindcss/cli/bin/tailwindcss.js -i ./src/global.css -o ./src/output.css --watch"
   },
   "dependencies": {
@@ -32,6 +34,7 @@
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
+    "gh-pages": "^6.3.0",
     "globals": "^16.5.0",
     "npx": "^10.2.2",
     "postcss": "^8.5.6",
