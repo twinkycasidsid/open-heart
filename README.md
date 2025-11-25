@@ -1,7 +1,7 @@
 # 🌸 **Open Heart — Emotional Support AI (Tagalog & Bisaya)**
 
 Open Heart is a lightweight emotional-support chatbot built to sound warm, human, and emotionally present.  
-It adapts its tone based on the user’s chosen **mood/persona** and speaks **Tagalog**, **Bisaya**, or **English** only—never mixing languages.
+It adapts its tone based on the user’s chosen **mood/persona** and speaks **Tagalog**, **Bisaya**, or **English**.
 
 ---
 
