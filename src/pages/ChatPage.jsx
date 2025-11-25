@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { sendGemini } from "../services/aiService";
 import { useOnboarding } from "../state/onboarding";
+import { useState, useEffect, useRef } from "react";
 
 export default function ChatPage() {
   const { mood, language } = useOnboarding();
@@ -8,17 +8,50 @@ export default function ChatPage() {
   const [input, setInput] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [musicOn, setMusicOn] = useState(true);
+  const audioRef = useRef(null);
+  const fadeAudio = (audio, fadeIn = true) => {
+    let vol = fadeIn ? 0 : audio.volume;
+    const step = 0.02;
+
+    const interval = setInterval(() => {
+      vol += fadeIn ? step : -step;
+      audio.volume = Math.min(Math.max(vol, 0), 0.5);
+
+      if (vol <= 0 || vol >= 0.5) clearInterval(interval);
+    }, 60);
+  };
+
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/open-heart/bgmusic.mp3");
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0; // start silent for better UX
+    }
+
+    if (musicOn) {
+      fadeAudio(audioRef.current, true);
+      audioRef.current.play().catch(() => {});
+    } else {
+      fadeAudio(audioRef.current, false);
+    }
+  }, [musicOn]);
+  const [isTyping, setIsTyping] = useState(false);
+  const bottomRef = useRef(null);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   const [showResetModal, setShowResetModal] = useState(false);
 
   const moodBackgrounds = {
-    park: "./bg1.gif",
-    beach: "./bg2.gif",
-    home: "./bg3.gif",
-    late: "./bg4.gif",
-    funny: "./bg5.gif",
-    serious: "./bg6.gif",
-    kuya: "./bg7.gif",
-    custom: "./bgcustom.gif",
+    park: "/open-heart/bg1.gif",
+    beach: "/open-heart/bg2.gif",
+    home: "/open-heart/bg3.gif",
+    late: "/open-heart/bg4.gif",
+    funny: "/open-heart/bg5.gif",
+    serious: "/open-heart/bg6.gif",
+    kuya: "/open-heart/bg7.gif",
+    custom: "/open-heart/bgcustom.gif",
   };
 
   const chosenBackground = moodBackgrounds[mood] || moodBackgrounds.custom;
@@ -29,10 +62,21 @@ export default function ChatPage() {
     const userMsg = { from: "user", text: input };
     setMessages((prev) => [...prev, userMsg]);
 
-    const reply = await sendGemini(input, mood, language);
-    const botMsg = { from: "bot", text: reply };
+    // show loading "..." bubble
+    setIsTyping(true);
+    setMessages((prev) => [...prev, { from: "bot", text: "..." }]);
 
-    setMessages((prev) => [...prev, botMsg]);
+    // get AI reply
+    const reply = await sendGemini(input, mood, language);
+
+    // replace "..." with real message
+    setMessages((prev) => {
+      const updated = [...prev];
+      updated.pop(); // remove placeholder
+      return [...updated, { from: "bot", text: reply }];
+    });
+
+    setIsTyping(false);
     setInput("");
   };
 
@@ -134,7 +178,8 @@ export default function ChatPage() {
         {/* Top UI */}
         <div className="text-center mb-4">
           <img
-            src="./oh-light-logo.png"
+            src="/open-heart/oh-light-logo.png"
+            alt="Open Heart Logo"
             style={{ width: "60px", opacity: 0.9 }}
           />
           <h2 style={{ marginTop: "10px", color: "#fff" }}>
@@ -169,10 +214,15 @@ export default function ChatPage() {
                   maxWidth: "70%",
                 }}
               >
-                {m.text}
+                {m.text === "..." ? (
+                  <span className="dot-typing"></span>
+                ) : (
+                  m.text
+                )}
               </p>
             </div>
           ))}
+          <div ref={bottomRef}></div>
         </div>
 
         {/* Input */}

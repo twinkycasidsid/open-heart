@@ -119,4 +119,17 @@ html, body, #root {
   transition: 0.2s ease;
 }
 
+.dot-typing {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bbb;
+  display: inline-block;
+  animation: blink 1.2s infinite both;
+}
 
+@keyframes blink {
+  0%   { opacity: .2; }
+  20%  { opacity: 1; }
+  100% { opacity: .2; }
+}

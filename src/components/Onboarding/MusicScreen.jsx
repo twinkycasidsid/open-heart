@@ -1,13 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { useOnboarding } from "../../state/onboarding";
+import { useState, useEffect } from "react";
 
 export default function MusicScreen() {
   const navigate = useNavigate();
   const { setMusic } = useOnboarding();
 
+  const fullText = "Would you like soft background music while we talk?";
+  const [display, setDisplay] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplay(fullText.slice(0, i));
+      i++;
+      if (i > fullText.length) {
+        clearInterval(interval);
+      }
+    }, 40);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleSelect = (choice) => {
     setMusic(choice);
-    navigate("/final");   // ← go to final screen
+    navigate("/final");
   };
 
   return (
@@ -15,7 +31,7 @@ export default function MusicScreen() {
 
       {/* Background GIF */}
       <div className="fullscreen-bg">
-        <img src="./oh-bg.gif" alt="bg" />
+        <img src="/open-heart/oh-bg.gif" alt="bg" />
       </div>
 
       {/* Card */}
@@ -23,14 +39,15 @@ export default function MusicScreen() {
 
         {/* Logo */}
         <div className="text-center mb-3">
-          <img src="./oh-light-logo.png" className="oh-logo" alt="logo" />
+          <img
+            src="/open-heart/oh-light-logo.png"
+            className="oh-logo"
+            alt="logo"
+          />
         </div>
 
-        {/* Question */}
-        <p className="oh-text">
-          Would you like soft background music<br />
-          while we talk?
-        </p>
+        {/* Typing Question */}
+        <p className="oh-text">{display}</p>
 
         {/* Buttons */}
         <div className="d-grid gap-3 mt-3">

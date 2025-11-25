@@ -1,12 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { useOnboarding } from "../../state/onboarding";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function LanguageScreen() {
   const navigate = useNavigate();
   const { setLanguage } = useOnboarding();
 
   const [selected, setSelected] = useState(null);
+
+  const fullText =
+    "Before we start, what language feels most comfortable for you today?";
+  const [display, setDisplay] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplay(fullText.slice(0, i));
+      i++;
+      if (i > fullText.length) clearInterval(interval);
+    }, 40);
+    return () => clearInterval(interval);
+  }, []);
 
   const chooseLanguage = (code) => {
     setSelected(code);
@@ -18,7 +32,7 @@ export default function LanguageScreen() {
 
       {/* Background GIF */}
       <div className="fullscreen-bg">
-        <img src="./oh-bg.gif" alt="bg" />
+        <img src="/open-heart/oh-bg.gif" alt="bg" />
       </div>
 
       {/* Card */}
@@ -26,13 +40,16 @@ export default function LanguageScreen() {
 
         {/* Logo */}
         <div className="text-center mb-3">
-          <img src="./oh-light-logo.png" className="oh-logo" alt="logo" />
+          <img
+            src="/open-heart/oh-light-logo.png"
+            className="oh-logo"
+            alt="logo"
+          />
         </div>
 
-        {/* Text */}
-        <p className="oh-text">
-          Before we start, what language feels <br />
-          most comfortable for you today?
+        {/* Typing Text */}
+        <p className="oh-text" style={{ minHeight: "55px" }}>
+          {display}
         </p>
 
         {/* Dropdown */}
@@ -53,17 +70,26 @@ export default function LanguageScreen() {
 
           <ul className="dropdown-menu oh-dropdown-menu text-center">
             <li>
-              <button className="dropdown-item" onClick={() => chooseLanguage("en")}>
+              <button
+                className="dropdown-item"
+                onClick={() => chooseLanguage("en")}
+              >
                 English
               </button>
             </li>
             <li>
-              <button className="dropdown-item" onClick={() => chooseLanguage("tl")}>
+              <button
+                className="dropdown-item"
+                onClick={() => chooseLanguage("tl")}
+              >
                 Tagalog
               </button>
             </li>
             <li>
-              <button className="dropdown-item" onClick={() => chooseLanguage("bis")}>
+              <button
+                className="dropdown-item"
+                onClick={() => chooseLanguage("bis")}
+              >
                 Bisaya
               </button>
             </li>

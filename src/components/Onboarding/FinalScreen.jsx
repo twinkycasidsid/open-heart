@@ -24,7 +24,7 @@ export default function FinalScreen() {
 
   const startChat = async () => {
     await createSession({ userId, language, mood });
-    navigate("chat");
+    navigate("/chat");
   };
 
   return (

@@ -1,15 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import { useOnboarding } from "../../state/onboarding";
+import { useState, useEffect } from "react";
 
 export default function WelcomeScreen() {
   const navigate = useNavigate();
   const { saveUserId } = useOnboarding();
 
+  const fullText = "Hey there. Welcome to Open Heart.\nI’m glad you’re here.";
+  const [display, setDisplay] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+
+    const interval = setInterval(() => {
+      setDisplay(fullText.slice(0, i));
+      i++;
+
+      if (i > fullText.length) {
+        clearInterval(interval);
+      }
+    }, 40); // typing speed
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {/* FULLSCREEN BACKGROUND */}
       <div className="fullscreen-bg">
-        <img src="./oh-bg.gif" alt="background" />
+        <img src="/open-heart/oh-bg.gif" alt="background" />
       </div>
 
       {/* CARD CENTERED */}
@@ -18,17 +37,15 @@ export default function WelcomeScreen() {
 
           {/* LOGO */}
           <img
-            src="./oh-light-logo.png"
+            src="/open-heart/oh-light-logo.png"
             className="mx-auto mb-3 oh-logo"
             style={{ width: "80px", height: "80px" }}
             alt="Open Heart Logo"
           />
 
-          {/* TEXT */}
-          <p className="oh-text">
-            Hey there. Welcome to Open Heart.
-            <br />
-            I’m glad you’re here.
+          {/* TYPING TEXT */}
+          <p className="oh-text" style={{ whiteSpace: "pre-line" }}>
+            {display}
           </p>
 
           {/* BUTTON */}
@@ -36,7 +53,7 @@ export default function WelcomeScreen() {
             className="btn btn-light w-100 mt-3"
             onClick={() => {
               saveUserId();
-              navigate("/language");   // ← NEW ROUTE
+              navigate("/language");
             }}
           >
             Continue →
