@@ -20,6 +20,15 @@ export default function ChatPage() {
       if (vol <= 0 || vol >= 0.5) clearInterval(interval);
     }, 60);
   };
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+      document.body.classList.remove("light-mode");
+    } else {
+      document.body.classList.add("light-mode");
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
 
   useEffect(() => {
     if (!audioRef.current) {
