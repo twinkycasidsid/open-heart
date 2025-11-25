@@ -15,7 +15,7 @@ export default function MusicScreen() {
 
       {/* Background GIF */}
       <div className="fullscreen-bg">
-        <img src="/oh-bg.gif" alt="bg" />
+        <img src="./oh-bg.gif" alt="bg" />
       </div>
 
       {/* Card */}
@@ -23,7 +23,7 @@ export default function MusicScreen() {
 
         {/* Logo */}
         <div className="text-center mb-3">
-          <img src="/oh-light-logo.png" className="oh-logo" alt="logo" />
+          <img src="./oh-light-logo.png" className="oh-logo" alt="logo" />
         </div>
 
         {/* Question */}

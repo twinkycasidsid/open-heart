@@ -31,7 +31,7 @@ export default function FinalScreen() {
     <>
       {/* BACKGROUND */}
       <div className="fullscreen-bg">
-        <img src="/oh-bg.gif" />
+        <img src="./oh-bg.gif" />
       </div>
 
       <div className="d-flex justify-content-center align-items-center vh-100">
@@ -39,7 +39,7 @@ export default function FinalScreen() {
 
           {/* LOGO */}
           <img
-            src="/oh-light-logo.png"
+            src="./oh-light-logo.png"
             className="mx-auto mb-3"
             style={{ width: "80px", height: "80px" }}
           />

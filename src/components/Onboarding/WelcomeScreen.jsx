@@ -9,7 +9,7 @@ export default function WelcomeScreen() {
     <>
       {/* FULLSCREEN BACKGROUND */}
       <div className="fullscreen-bg">
-        <img src="/oh-bg.gif" alt="background" />
+        <img src="./oh-bg.gif" alt="background" />
       </div>
 
       {/* CARD CENTERED */}
@@ -18,7 +18,7 @@ export default function WelcomeScreen() {
 
           {/* LOGO */}
           <img
-            src="/oh-light-logo.png"
+            src="./oh-light-logo.png"
             className="mx-auto mb-3 oh-logo"
             style={{ width: "80px", height: "80px" }}
             alt="Open Heart Logo"

@@ -38,7 +38,7 @@ export default function MoodScreen() {
 
       {/* Background */}
       <div className="fullscreen-bg">
-        <img src="/oh-bg.gif" />
+        <img src="./oh-bg.gif" />
       </div>
 
       {/* Card */}
@@ -46,7 +46,7 @@ export default function MoodScreen() {
 
         {/* Logo */}
         <div className="text-center mb-3">
-          <img src="/oh-light-logo.png" className="oh-logo" />
+          <img src="./oh-light-logo.png" className="oh-logo" />
         </div>
 
         {/* Heading */}

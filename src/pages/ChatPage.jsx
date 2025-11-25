@@ -11,14 +11,14 @@ export default function ChatPage() {
   const [showResetModal, setShowResetModal] = useState(false);
 
   const moodBackgrounds = {
-    park: "/bg1.gif",
-    beach: "/bg2.gif",
-    home: "/bg3.gif",
-    late: "/bg4.gif",
-    funny: "/bg5.gif",
-    serious: "/bg6.gif",
-    kuya: "/bg7.gif",
-    custom: "/bgcustom.gif",
+    park: "./bg1.gif",
+    beach: "./bg2.gif",
+    home: "./bg3.gif",
+    late: "./bg4.gif",
+    funny: "./bg5.gif",
+    serious: "./bg6.gif",
+    kuya: "./bg7.gif",
+    custom: "./bgcustom.gif",
   };
 
   const chosenBackground = moodBackgrounds[mood] || moodBackgrounds.custom;
@@ -134,7 +134,7 @@ export default function ChatPage() {
         {/* Top UI */}
         <div className="text-center mb-4">
           <img
-            src="/oh-light-logo.png"
+            src="./oh-light-logo.png"
             style={{ width: "60px", opacity: 0.9 }}
           />
           <h2 style={{ marginTop: "10px", color: "#fff" }}>
