@@ -7,7 +7,7 @@ export default function MusicScreen() {
 
   const handleSelect = (choice) => {
     setMusic(choice);
-    navigate("/final");   // ← go to final screen
+    navigate("final");   // ← go to final screen
   };
 
   return (

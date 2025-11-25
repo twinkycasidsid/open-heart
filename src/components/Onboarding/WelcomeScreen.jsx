@@ -36,7 +36,7 @@ export default function WelcomeScreen() {
             className="btn btn-light w-100 mt-3"
             onClick={() => {
               saveUserId();
-              navigate("/language");   // ← NEW ROUTE
+              navigate("language");   // ← NEW ROUTE
             }}
           >
             Continue →

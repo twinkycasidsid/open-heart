@@ -74,7 +74,7 @@ export default function LanguageScreen() {
         <button
           className="btn btn-light w-100 mt-4"
           disabled={!selected}
-          onClick={() => navigate("/mood")}
+          onClick={() => navigate("mood")}
         >
           Continue →
         </button>

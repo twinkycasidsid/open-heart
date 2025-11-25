@@ -263,7 +263,8 @@ export default function ChatPage() {
               <button
                 onClick={() => {
                   localStorage.removeItem("openheart-onboarding");
-                  window.location.href = "/"; // go back to WelcomeScreen
+                  window.location.href = "/open-heart/";
+                  // go back to WelcomeScreen
                 }}
                 style={{
                   padding: "10px 20px",
