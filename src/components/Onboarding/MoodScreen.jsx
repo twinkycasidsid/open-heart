@@ -30,7 +30,7 @@ export default function MoodScreen() {
     } else {
       setMood(selected);
     }
-    navigate("music");
+    navigate("/music");
   };
 
   return (
